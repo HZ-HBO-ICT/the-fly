@@ -11,16 +11,14 @@ class Player extends GameItem {
   }
 
   public draw() {
-    console.log("draw");
+    //console.log("draw");
   }
 
   public collidesWithFlies(flies: Fly[]) {
-    //let collides = false;
-    console.log('ClickerdeClick')
     let flyIndex: number = undefined;
     flies.forEach((fly, index) => {
-      console.log(`Mouse: ${this.xPos}, Fly: ${fly.getXPos()}`);
-      // console.log(`Mouse: ${this.yPos}, Fly: ${fly.getYPos()}`);
+      console.log(`MouseX: ${this.xPos}, FlyX: ${fly.getXPos()}`);
+      console.log(`MouseY: ${this.yPos}, FlyY: ${fly.getYPos()}`);
 
       if (
         this.xPos >= fly.getXPos() &&
@@ -30,10 +28,8 @@ class Player extends GameItem {
       ) {
         flyIndex = index;
         console.log('Smashed', flyIndex);
-        // //collides = true;
-        // console.error('clicked on Fly');
-        // //fly out the array
-        // fly.setImage(`./assets/images/splash.png`);
+
+        fly.smashed();
       }
     });
     return flyIndex;

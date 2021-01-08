@@ -31,8 +31,9 @@ class Fly extends GameItem {
     this.image = this.loadNewImage(imageString);
   }
 
-  public setAlive(alive: boolean) {
-    this.alive = alive;
+  public smashed() {
+    this.alive = false;
+    this.setImage(`./assets/images/splash.png`);
   }
 
   /**
@@ -56,9 +57,7 @@ class Fly extends GameItem {
       this.yPos = Math.floor(
         Math.random() * (window.innerHeight - this.image.height)
       );
-    } else {
-      this.image = this.loadNewImage(`./assets/images/splash.png`);
-    }
+    } 
   }
 
   /**

@@ -3,7 +3,6 @@ class Game {
   private readonly ctx: CanvasRenderingContext2D; // find the right type
   private _Geoffrey: Player;
   private flies: Fly[];
-  private smashedFlies: Fly[];
   private counter: number;
   private _fps: number = 0.1;
   private _pause: boolean = false;
@@ -18,7 +17,6 @@ class Game {
     this.canvas.height = window.innerHeight;
     this.ctx = this.canvas.getContext("2d");
     this.flies = [];
-    this.smashedFlies = [];
     this.counter = 0;
     window.addEventListener("mousedown", this.eventHandler);
     //window.addEventListener("mouseup", this.eventUpHandler);
@@ -37,17 +35,11 @@ class Game {
    * Function to draw the initial state of al living objects
    */
   public draw(): void {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);   
+
     this.flies.forEach((fly, index) => {
       fly.draw(this.ctx);
     });
-
-    if (this.smashedFlies.length > 0) {
-      this.smashedFlies.forEach((fly, index) => {
-        fly.setImage(`./assets/images/splash.png`);
-        fly.draw(this.ctx);
-      });
-    }
 
     this._Geoffrey.draw();
   }
@@ -80,9 +72,9 @@ class Game {
    */
   public loop = (): void => {
     this.counter++;
+    this.draw();
     if (this.counter % 120 == 0) {
-      console.log(`Geoffrey clicked on ${this._Geoffrey.getXPos()}`)
-      this.draw();
+      this.update();      
       // let smashedFlyIndex: number = this._Geoffrey.collidesWithFlies(
       //   this.flies
       // );
@@ -92,7 +84,7 @@ class Game {
       //   this.flies = this.flies.splice(smashedFlyIndex, 1);
       //   this.smashedFlies.push(this.flies[smashedFlyIndex]);
       // }
-      this.update();
+      
     }
     //use the set timeout to control the FPS.
     // setTimeout(() => {
