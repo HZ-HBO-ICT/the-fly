@@ -1,0 +1,39 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+}
+
+#container {
+  /* display: flex; */
+}
+
+.fly {
+  margin: auto;
+  position: absolute;
+  /* left: 0; */
+  /* bottom: 0; */
+  /* right: 0; */
+  width: 150px;
+  /*essential for determining offset*/
+  height: 150px;
+  /*essential for determining offset*/
+}
+
+.flying{
+  transition: width 1s, height 1s, background-color 1s, transform 1s;  
+}
